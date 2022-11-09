@@ -59,5 +59,7 @@ struct LandmarkDetails: View {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         LandmarkDetails(landmark: Service.landmarks[1])
+        
     }
+       
 }
