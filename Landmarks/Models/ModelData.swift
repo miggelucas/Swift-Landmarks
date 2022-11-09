@@ -8,46 +8,30 @@
 import Foundation
 
 
-//var landmarks : [Landmark] = loadJson(filename: "landmarkData.json") ?? []
-//struct ResponseData: Decodable {
-//    var landmarks: [Landmark]
-//}
-//
-//func loadJson(filename fileName: String) -> [Landmark]? {
-//    if let url = Bundle.main.url(forResource: fileName, withExtension: nil) {
-//        do {
-//            let data = try Data(contentsOf: url)
-//            let decoder = JSONDecoder()
-//            let jsonData = try decoder.decode(ResponseData.self, from: data)
-//            return jsonData.landmarks
-//        } catch {
-//            print("error:\(error)")
-//        }
-//    }
-//    return nil
-//}
+struct Service {
+    
+    static var landmarks: [Landmark] = load("landmarkData.json")
 
+    static func load<T: Decodable>(_ filename: String) -> T {
+        let data: Data
 
-var landmarks: [Landmark] = load("landmarkData.json")
+        guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
+            else {
+                fatalError("Couldn't find \(filename) in main bundle.")
+        }
 
-func load<T: Decodable>(_ filename: String) -> T {
-    let data: Data
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
+        }
 
-    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-        else {
-            fatalError("Couldn't find \(filename) in main bundle.")
+        do {
+            let decoder = JSONDecoder()
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+        }
     }
-
-    do {
-        data = try Data(contentsOf: file)
-    } catch {
-        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
-    }
-
-    do {
-        let decoder = JSONDecoder()
-        return try decoder.decode(T.self, from: data)
-    } catch {
-        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
-    }
+    
 }
