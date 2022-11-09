@@ -28,6 +28,11 @@ struct LandmarkRow_Previews: PreviewProvider {
     let landmarks = Service.landmarks
     
     static var previews: some View {
-        LandmarkRow(landmark: Service.landmarks[0])
+        Group {
+            LandmarkRow(landmark: Service.landmarks[0])
+            LandmarkRow(landmark: Service.landmarks[1])
+            
+        }
+        .previewLayout(.fixed(width: 300, height: 70))
     }
 }
