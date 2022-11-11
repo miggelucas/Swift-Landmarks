@@ -14,7 +14,9 @@ struct LandmarkRow: View {
         HStack {
             landmark.image
                 .resizable()
+                .cornerRadius(5)
                 .frame(width: 50, height: 50)
+            
             
             Text(landmark.name)
             
@@ -30,14 +32,11 @@ struct LandmarkRow: View {
 }
 
 struct LandmarkRow_Previews: PreviewProvider {
-    let landmarks = Service.landmarks
+    static var landmarks = ModelData().landmarks
     
     static var previews: some View {
-        Group {
-            LandmarkRow(landmark: Service.landmarks[0])
-            LandmarkRow(landmark: Service.landmarks[1])
-            
-        }
-        .previewLayout(.fixed(width: 300, height: 70))
+        LandmarkRow(landmark: landmarks[0])
+            .previewLayout(.fixed(width: 300, height: 70))
+        // preview layout not working after xcode 14
     }
 }
