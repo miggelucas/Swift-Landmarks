@@ -31,6 +31,9 @@ struct CategoryRow: View {
                 }
             }
             .frame(height: 185)
+
+                
+            
             
         }
     }
