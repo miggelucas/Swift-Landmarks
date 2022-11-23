@@ -144,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				17D664CB28F28EC600D6E9A4 /* ContentView.swift */,
+				17949F28292AFA24008A20F8 /* PageView */,
 				17949F152926CD05008A20F8 /* Hike */,
 				170CD2E7291EC8F80073226D /* Landmarks */,
 				17949F1E292AB778008A20F8 /* Category */,
@@ -223,7 +224,6 @@
 		17D664C828F28EC600D6E9A4 /* Landmarks */ = {
 			isa = PBXGroup;
 			children = (
-				17949F28292AFA24008A20F8 /* PageView */,
 				172027912919C67400B1A35F /* Views */,
 				1720278E2919BDC100B1A35F /* Models */,
 				172027922919C67D00B1A35F /* Resources  */,
